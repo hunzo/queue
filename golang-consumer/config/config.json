@@ -1,0 +1,7 @@
+{
+    "amqp_uri": "amqp://guest:guest@10.10.31.188",
+    "graylog_srv": "http://10.10.31.70:12201/gelf",
+    "queue_name": "loadtest",
+    "amqp_username": "guest",
+    "amqp_password": "guest"
+}

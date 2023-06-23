@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "sh /app/entrypoint.sh"
+    restart: always
+    env_file:
+      - .env
