@@ -14,15 +14,15 @@ def main():
         # 1000,
         # 1000,
         # 1000,
-        1000,
+        # 1000,
         # 100000,
-        # 10000,
+        10000,
     ]
 
 
     for i in test_list:
-        # tasks_queue(i)
-        tasks(i)
+        tasks_queue(i)
+        # tasks(i)
     
     pass
 

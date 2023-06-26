@@ -1,5 +1,5 @@
 version: '3.9'
 services:
-  worker:
+  go-worker:
     build: .
     restart: on-failure
