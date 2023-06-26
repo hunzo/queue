@@ -27,7 +27,7 @@ func LogToGraylog(payload models.GraylogPayload) error {
 	})
 
 	fmt.Printf("\ncount message: %d\n", payload.Count)
-	fmt.Printf("\nhostname: %s\n", payload.Host)
+	fmt.Printf("\nhostname: %s\n", os.Getenv("HOSTNAME"))
 
 	if err != nil {
 		log.Println(err)
