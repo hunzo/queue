@@ -26,6 +26,9 @@ func LogToGraylog(payload models.GraylogPayload) error {
 		Check:        1,
 	})
 
+	fmt.Printf("\ncount message: %d\n", payload.Count)
+	fmt.Printf("\nhostname: %s\n", payload.Host)
+
 	if err != nil {
 		log.Println(err)
 		return err
@@ -39,13 +42,14 @@ func LogToGraylog(payload models.GraylogPayload) error {
 		return err
 	}
 
-	body, err := io.ReadAll(ret.Body)
-	if err != nil {
-		log.Println(err)
-		return err
+	// body, err := io.ReadAll(ret.Body)
+	_, e := io.ReadAll(ret.Body)
+	if e != nil {
+		log.Println(e)
+		return e
 	}
 
-	log.Println(string(body))
+	// log.Println(string(body))
 
 	return nil
 }
