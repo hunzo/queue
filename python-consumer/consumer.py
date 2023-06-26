@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 import requests
-import names
+# import names
 
 load_dotenv()
 
@@ -14,7 +14,7 @@ QUEUE_NAME = os.environ.get("QUEUE_NAME", "loadtest")
 PUBLISH_SERVER = os.environ.get("PUBLISH_AMQP_HOST", "10.10.31.188")
 USERNAME = os.environ.get("AMQP_USER", "guest")
 PASSWORD = os.environ.get("AMQP_PASSWORD", "guest")
-HOSTNAME = os.environ.get("HOSTNAME", "guest")
+HOSTNAME = os.environ.get("HOSTNAME", "python-worker")
 HOST_LOGGER = os.environ.get("HOST_LOGGER", "guest")
 
 connection_parameter = pika.ConnectionParameters(
@@ -44,7 +44,8 @@ def callback(ch, method, properties, body):
     data = json.loads(body)
 
     data["host"] = HOSTNAME
-    data["name"] = names.get_full_name()
+    data["check"] = 1
+    # data["name"] = names.get_full_name()
 
     ret = Logger(data)
 

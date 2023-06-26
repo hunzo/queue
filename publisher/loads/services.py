@@ -94,11 +94,13 @@ def Logger(count, uid, start_time):
     url = os.environ.get("HOST_LOGGER", "http://localhost:12201/glef")
     payload = {
         "version": "1.1",
-        "host": "host-loadtest",
+        "host": "python-loop-task",
         "short_message": uid,
-        "full_message": "full message",
         "start_time": start_time,
-        "count":  count
+        "count":  count,
+        "check": 1
     }
+
+    print(payload)
 
     return requests.post(url, json=payload)

@@ -58,7 +58,11 @@ func CallBack(d amqp.Delivery) {
 	// Logging to graylog
 	// graylog.LogToGraylog(ReqPayload, res)
 
-	graylog.LogToGraylog(ReqPayload)
+	err := graylog.LogToGraylog(ReqPayload)
+
+	if err != nil {
+		d.Ack(true)
+	}
 
 	fmt.Printf("%+v", ReqPayload)
 

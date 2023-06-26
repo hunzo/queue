@@ -13,7 +13,7 @@ import (
 	_ "time/tzdata"
 )
 
-func LogToGraylog(payload models.GraylogPayload) {
+func LogToGraylog(payload models.GraylogPayload) error {
 
 	GRAYLOG_SERVER := config.New().GraylogSrv
 
@@ -28,6 +28,7 @@ func LogToGraylog(payload models.GraylogPayload) {
 
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 
 	fmt.Printf("%s", GRAYLOG_SERVER)
@@ -35,12 +36,16 @@ func LogToGraylog(payload models.GraylogPayload) {
 	ret, err := http.Post(GRAYLOG_SERVER, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 
 	body, err := io.ReadAll(ret.Body)
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 
 	log.Println(string(body))
+
+	return nil
 }
